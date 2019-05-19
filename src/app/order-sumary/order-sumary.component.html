@@ -1,0 +1,11 @@
+<div class="jumbotron mrg-t">
+	<h2 class="text-center">Pedido concluído com sucesso!</h2>
+	<p class="text-center">Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está a caminho.</p>
+	<p class="text-center"><strong>Avalie</strong>  sua experiência:</p>
+	<p class="text-center">
+		<app-rating (rated)="rate()"></app-rating>
+	</p>
+	<p *ngIf="rated"  class="text-center text-primary">
+		<strong>Obrigado pela sua avaliação!</strong>
+	</p>
+</div>

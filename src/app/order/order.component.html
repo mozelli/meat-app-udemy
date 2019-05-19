@@ -1,0 +1,214 @@
+<div class="mrg-t">
+
+  <form [formGroup]="orderForm" novalidate>
+    <div class="row mb-4">
+      <div class="col-lg-12">
+        <h2 class="page-header">
+          <i class="fa fa-shopping-cart"></i> Finalize o seu pedido
+        </h2>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h5>Seus Dados</h5>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <app-input errorMessage="Campo obrigatório. Mínimo 5 caracteres.">
+              <input 
+                type="text"
+                class="form-control" 
+                placeholder="Nome"
+                autocomplete="off"
+                formControlName="name"
+                [class.is-invalid]="!orderForm.get('name').valid && validacao('name')"
+                [class.is-valid]="orderForm.get('name').valid && validacao('name')"
+              >
+            </app-input>
+          </div>
+          <div class="col-lg-3">
+            <app-input errorMessage="Informe um e-mail válido.">
+              <input 
+                type="text"
+                class="form-control" 
+                placeholder="E-mail"
+                autocomplete="off"
+                formControlName="email"
+                [class.is-invalid]="!orderForm.get('email').valid && validacao('email')"
+                [class.is-valid]="orderForm.get('email').valid && validacao('email')"
+              >
+            </app-input>
+          </div>
+            <div class="col-lg-3">
+            <app-input errorMessage="Os emails não conferem.">
+              <input 
+                type="text"
+                class="form-control" 
+                placeholder="Repita o e-mail"
+                autocomplete="off"
+                formControlName="emailConfirmation"
+                [class.is-invalid]="!emailsEqualsTo() && validacao('emailConfirmation')"
+                [class.is-valid]="emailsEqualsTo()"
+              >
+            </app-input>
+          </div>
+        </div>  
+      </div>
+      
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <div class="card-title">
+          <h5>Endereço de Entrega:</h5>      
+        </div>
+        <div class="row">
+          <div class="col-lg-6">  
+            <app-input errorMessage="Campo obrigatório. Mínimo 3 caracteres.">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Logradouro" 
+                formControlName="logradouro"
+                autocomplete="off" 
+                [class.is-invalid]="!orderForm.get('logradouro').valid && validacao('logradouro')"
+                [class.is-valid]="orderForm.get('logradouro').valid && validacao('logradouro')"
+              >  
+            </app-input>
+            
+          </div>
+          <div class="col-lg-3">
+            <app-input errorMessage="Campo obrigatório. Somente números.">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Número" 
+                formControlName="numero"
+                autocomplete="off"
+                [class.is-invalid]="!orderForm.get('numero').valid && validacao('numero')"
+                [class.is-valid]="orderForm.get('numero').valid && validacao('numero')"
+              >
+            </app-input>
+          </div>
+          <div class="col-lg-3">
+            
+            <app-input errorMessage="">
+              <input 
+                type="text" 
+                formControlName="complemento"
+                class="form-control" 
+                placeholder="Complemento" 
+                autocomplete="off" 
+                [class.is-valid]="orderForm.get('complemento').valid && validacao('complemento')"
+              >
+            </app-input>
+
+          </div>
+        </div>  
+      </div>
+    </div>
+
+    
+
+    
+    
+    <div class="row form-group mt-4">
+      <div class="col-lg-12">
+        <h5>Itens do Pedido:</h5>
+      </div>
+    </div>
+    
+    <div class="row form-group">
+      <div class="col-lg-12">
+        
+        <app-order-items 
+          [items]="cartItems()" 
+          (increaseQty)="increaseQty($event)" 
+          (decreaseQty)="decreaseQty($event)"
+          (remove)="remove($event)">
+          </app-order-items>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h5>Formas de Pagamento</h5>              
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                
+                <app-radio label="Dinheiro" forLabel="dinheiro">
+                  <input 
+                    type="radio" 
+                    id="dinheiro" 
+                    formControlName="payment"
+                    value="dinheiro" 
+                    class="custom-control-input"
+                  >
+                </app-radio>
+                
+                <app-radio label="Cartão de Débito" forLabel="cartaoDebito" errorMessage="Informe uma forma de pagamento.">
+                    <input 
+                    type="radio"
+                    id="cartaoDebito" 
+                    formControlName="payment"
+                    value="cartaoDebito" 
+                    class="custom-control-input"
+                  >
+                </app-radio>
+
+                <app-radio label="Cartão de Crédito" forLabel="cartaoCredito" errorMessage="Informe uma forma de pagamento.">
+                    <input 
+                    type="radio"
+                    id="cartaoCredito" 
+                    formControlName="payment"
+                    value="cartaoCredito" 
+                    class="custom-control-input"
+                  >
+                </app-radio>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      
+      </div>
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h5>Frete e Total</h5>  
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                
+                <app-delivery-costs [delivery]="delivery" [itemsValue]="itemsValue()"></app-delivery-costs>
+              
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <button 
+                  (click)="checkOrder(orderForm.value)"
+                  class="btn btn-success btn-lg" 
+                  [disabled]="!orderForm.valid || cartItems().length === 0"
+                >
+                  <i class="fa fa-credit-card"></i> Concluir!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </form>              
+</div>

@@ -1,0 +1,11 @@
+<section class="mrg-t mb-5">
+	<h1><i class="fas fa-store"></i> Todos os restaurantes</h1>
+</section>
+
+<section>
+	<div class="row">
+		<div class="col-sm-6 col-xs-12" *ngFor="let restaurant of restaurants | async">
+			<app-restaurant [restaurant]="restaurant" ></app-restaurant>
+		</div>
+	</div>
+</section>

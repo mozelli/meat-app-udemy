@@ -1,0 +1,19 @@
+<div class="card mb-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img [src]="menuItem.imagePath" class="card-img m-1" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"> {{ menuItem.name }} </h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> {{ menuItem.description }} </li>
+          <li class="list-group-item"> {{ menuItem.price | currency: 'BRL': 'symbol' }} </li>
+          <li class="list-group-item">
+            <button (click)="emitAddEvent()" class="btn btn-success">Adicionar</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
