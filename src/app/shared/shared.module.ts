@@ -27,7 +27,7 @@ import { NotificationService } from './messages/notification.service';
   InputComponent,
   RadioComponent,
   RatingComponent,
-  SnackbarComponent
+  SnackbarComponent,
   ],
   providers: [
     NotificationService

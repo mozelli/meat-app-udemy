@@ -1,19 +1,41 @@
-<a [routerLink]="['/restaurants', restaurant.id]">
+
   <div class="card mb-3" style="max-width: 540px;" [@restaurantAppeared]="restaurantState">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img [src]="restaurant.imagePath" class="card-img m-1" alt="...">
+        <a [routerLink]="['/restaurants', restaurant.id]">
+          <img [src]="restaurant.imagePath" class="card-img m-1" alt="...">
+        </a>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{ restaurant.name }}</h5>
-          <ul class="list-group list-group-flush">
-      		  <li class="list-group-item"><i class="fa fa-star"></i> {{ restaurant.rating }}</li>
-      		  <li class="list-group-item">{{ restaurant.category }}</li>
-      			<li class="list-group-item">{{ restaurant.deliveryEstimate }}</li>
-    			</ul>
+          <h5 class="card-title"><strong>{{ restaurant.name }}</strong></h5>
+          
+            <table class="table table-sm">
+              <tbody>
+                <tr>
+                  <td><i class="fa fa-star"></i> {{ restaurant.rating }}</td>
+                </tr>
+                <tr>
+                  <td>{{ restaurant.category }}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="row">
+                      <div class="col-lg-6">
+                      {{ restaurant.deliveryEstimate }}   
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <a [routerLink]="['/restaurants', restaurant.id]">
+                          <strong>Entrar </strong>
+                        </a> <i class="fas fa-sign-in-alt text-primary"></i>
+                    </div>  
+                    </div>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </div>
     </div>
   </div>
-</a>

@@ -6,3 +6,17 @@
 .mrg-t1 {
 	margin-top: 100px;	
 }
+
+body {
+	background-color: #F7F0FF;
+}
+
+/*Barra de pesquisa de restaurantes*/
+.search-link {
+	cursor: pointer;
+	color: #555;
+}
+
+.search-link:hover {
+	color: #007bff;
+}

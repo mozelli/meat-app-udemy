@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -22,8 +22,14 @@ export class RestaurantsService {
   		private http: HttpClient
   		) { }
 
-  	getRestaurants(): Observable<Restaurant[]> {
-      return this.http.get<Restaurant[]>(`${this.API}restaurants`)
+  	getRestaurants(term?: string): Observable<Restaurant[]> {
+      let params: HttpParams = undefined;
+
+      if(term) {
+        params = new HttpParams().set('q', term)
+      }
+
+      return this.http.get<Restaurant[]>(`${this.API}restaurants`, {params: params})
           .pipe(
             catchError(ErrorHandler.handleError),
             take(1)
