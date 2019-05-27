@@ -1,0 +1,38 @@
+<section class="mrg-t">
+	<div class="row justify-content-lg-center">
+		<div class="col-lg-6">
+			<div class="jumbotron">
+				<h1 class="display-4">Meat | Login</h1>
+				<p class="lead">Por favor, efetue o login para continuar</p>
+				<form [formGroup]="loginForm">
+					<app-input [showTip]=false>
+						<input 
+							type="text" 
+							formControlName="email" 
+							class="form-control" 
+							placeholder="Email"
+							[class.is-invalid]="!loginForm.get('email').valid && validacao('email')"
+                			[class.is-valid]="loginForm.get('email').valid && validacao('email')"
+						>
+					</app-input>
+					<app-input>
+						<input 
+							type="password" 
+							formControlName="password" 
+							class="form-control" 
+							placeholder="Password"
+							[class.is-invalid]="!loginForm.get('password').valid && validacao('password')"
+                			[class.is-valid]="loginForm.get('password').valid && validacao('password')"
+						>
+					</app-input>
+		  			<div class="row">
+		  				<div class="col-lg-12">
+		  					<button type="submit" [disabled]="!loginForm.valid" (click)="login()" class="btn btn-primary btn-block btn-lg">Entrar</button>
+		  				</div>
+		  				
+					</div>
+				</form>
+			</div>	
+		</div>
+	</div>
+</section>

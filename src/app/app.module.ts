@@ -23,10 +23,11 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { LoginComponent } from './security/login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 //modules
 import { SharedModule } from './shared/shared.module';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 //registerLocaleData(localePt, 'pt');
 registerLocaleData(localePt, 'pt-BR');
@@ -44,7 +45,8 @@ registerLocaleData(localePt, 'pt-BR');
     MenuItemComponent,
     ReviewsComponent,
     OrderSumaryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent
 
   ],
   imports: [

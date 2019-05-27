@@ -10,10 +10,12 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderComponent } from './order/order.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './security/login/login.component';
 
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'login', component: LoginComponent },
 	{ path: 'home', component: HomeComponent },
 
 	{ path: 'about', loadChildren: './about/about.module#AboutModule'},

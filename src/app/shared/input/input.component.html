@@ -5,7 +5,7 @@
 	<div class="valid-feedback">
 		<i class="fas fa-check"></i> Ok!
 	</div>
-	<div class="invalid-feedback">
+	<div class="invalid-feedback" *ngIf="showTip">
 		<i class="fas fa-times"></i> {{ errorMessage }}
 	</div>	
 </div>

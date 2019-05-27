@@ -8,6 +8,7 @@ import { NgModel } from '@angular/forms';
 export class InputComponent implements OnInit {
 
 	@Input() errorMessage: string;
+  @Input() showTip: boolean;
 
 	//input: any;
 

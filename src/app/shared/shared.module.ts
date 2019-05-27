@@ -10,6 +10,7 @@ import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 //Services
 import { NotificationService } from './messages/notification.service';
+import { LoginService } from '../security/login/login.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NotificationService } from './messages/notification.service';
   SnackbarComponent,
   ],
   providers: [
-    NotificationService
+    NotificationService,
+    LoginService
   ]
 })
 export class SharedModule { }
