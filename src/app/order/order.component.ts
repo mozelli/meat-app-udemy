@@ -1,6 +1,7 @@
 import { Component, OnInit, ContentChild, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { tap } from 'rxjs/operators';
 
 import { OrderService } from './order.service';
 import { CartItem } from '../restaurant-detail/shopping-cart/cart-item.model';
@@ -19,6 +20,8 @@ export class OrderComponent implements OnInit, AfterContentInit {
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
   
   numberPattern = /^[0-9]*$/;
+
+  orderId: number;
 
   constructor(
     private orderService: OrderService,
@@ -70,6 +73,7 @@ export class OrderComponent implements OnInit, AfterContentInit {
 
     this.orderService.checkOrder(order)
       .subscribe((order: Order) => {
+        this.orderId = order.id;
         this.router.navigate(['/order-sumary']);
         this.orderService.clear();
       });
@@ -81,6 +85,10 @@ export class OrderComponent implements OnInit, AfterContentInit {
 
   emailsEqualsTo(): boolean {
     return this.orderForm.get('email').value === this.orderForm.get('emailConfirmation').value && this.orderForm.get('email').value.length > 0;
+  }
+
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined;
   }
 
 }

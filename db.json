@@ -427,6 +427,50 @@
         }
       ],
       "id": 3
+    },
+    {
+      "name": "Juliana",
+      "email": "juliana@gmail.com",
+      "emailConfirmation": "juliana@gmail.com",
+      "logradouro": "Rua das Margaridas",
+      "numero": "67",
+      "complemento": "Fundos",
+      "payment": "dinheiro",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "cup-cake"
+        },
+        {
+          "quantity": 1,
+          "menuId": "bread"
+        },
+        {
+          "quantity": 1,
+          "menuId": "sunday"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Antônio Eustáqueo",
+      "email": "antonio@gmail.com",
+      "emailConfirmation": "antonio@gmail.com",
+      "logradouro": "Rua Flávio Marques Lisboa",
+      "numero": "333",
+      "complemento": "",
+      "payment": "cartaoDebito",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "cup-cake"
+        },
+        {
+          "quantity": 5,
+          "menuId": "donut"
+        }
+      ],
+      "id": 5
     }
   ]
 }

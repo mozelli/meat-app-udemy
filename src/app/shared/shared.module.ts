@@ -14,6 +14,7 @@ import { LoginService } from '../security/login/login.service';
 
 //Guards
 import { LoggedInGuard } from '../security/loggedin.guard';
+import { LeaveOrderGuard } from '../order/leave-order.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoggedInGuard } from '../security/loggedin.guard';
   providers: [
     NotificationService,
     LoginService,
-    LoggedInGuard
+    LoggedInGuard,
+    LeaveOrderGuard
   ]
 })
 export class SharedModule { }

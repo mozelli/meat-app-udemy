@@ -30,7 +30,7 @@ const routes: Routes = [
 		] 
 	},
 	{ path: 'restaurants', component: RestaurantsComponent },
-	{ path: 'order', loadChildren: './order/order.module#OrderModule', canLoad: [LoggedInGuard] },
+	{ path: 'order', loadChildren: './order/order.module#OrderModule', canLoad: [LoggedInGuard], canActivate: [LoggedInGuard] },
 	{ path: 'order-sumary', component: OrderSumaryComponent },
 	{ path: '**', component: NotFoundComponent }
 ];

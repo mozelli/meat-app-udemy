@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .mrg-t {
-	margin-top: 70px;
+	margin-top: 90px;
 }
 
 .mrg-t1 {
@@ -19,4 +19,8 @@ body {
 
 .search-link:hover {
 	color: #007bff;
+}
+
+.my-pointer {
+	cursor: pointer;
 }

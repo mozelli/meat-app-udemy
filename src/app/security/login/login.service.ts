@@ -1,29 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
 import { User } from './user.model';
-import { tap } from 'rxjs/operators';
+import { tap, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-	user: User
+	user: User;
+  lastUrl: string;
 
   constructor(
   	private httpClient: HttpClient,
     private router: Router
-  	) { }
+  	) {
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd) => this.lastUrl = e.url);
+  }
 
   isLogged(): boolean {
   	return this.user !== undefined;
   }
 
-  handleLogin(path?: string) {
-    this.router.navigate(['/login', path]);
+  handleLogin(path: string = this.lastUrl) {
+    this.router.navigate(['/login', btoa(path)]);
   }
 
 
@@ -32,5 +37,9 @@ export class LoginService {
   		.pipe(
   			tap(user => this.user = user)
   		);
+  }
+
+  logout() {
+    this.user = undefined;
   }
 }

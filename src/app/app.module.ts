@@ -25,6 +25,7 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import { LoginComponent } from './security/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 //modules
 import { SharedModule } from './shared/shared.module';
@@ -46,7 +47,8 @@ registerLocaleData(localePt, 'pt-BR');
     ReviewsComponent,
     OrderSumaryComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    UserDetailComponent
 
   ],
   imports: [
