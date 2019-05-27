@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { ShoppingCartService } from '../restaurant-detail/shopping-cart/shopping
 import { CartItem } from '../restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
 import { ErrorHandler } from '../shared/errorHandler';
+import { LoginService } from '../security/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class OrderService {
 
   	constructor(
   		private shoppingCartService: ShoppingCartService,
-      private http: HttpClient
+      private http: HttpClient,
+      private loginService: LoginService
   		) { }
 
 
@@ -47,7 +49,13 @@ export class OrderService {
     }
 
     checkOrder(order: Order): Observable<Order> {
-      return this.http.post<Order>(`${this.API}orders`, order)
+      let headers = new HttpHeaders()
+
+      if(this.loginService.isLogged()) {
+        headers = headers.set('Authorization', `Beared ${this.loginService.user.accessToken}`)
+      }
+
+      return this.http.post<Order>(`${this.API}orders`, order, {headers: headers})
         .pipe(
           catchError(ErrorHandler.handleError)
           );

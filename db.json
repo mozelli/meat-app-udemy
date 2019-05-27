@@ -407,6 +407,26 @@
         }
       ],
       "id": 2
+    },
+    {
+      "name": "Juliana",
+      "email": "juliana@gmail.com",
+      "emailConfirmation": "juliana@gmail.com",
+      "logradouro": "Rua das Flores",
+      "numero": "23",
+      "complemento": "",
+      "payment": "cartaoCredito",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "greensandwich"
+        },
+        {
+          "quantity": 2,
+          "menuId": "ceasar"
+        }
+      ],
+      "id": 3
     }
   ]
 }

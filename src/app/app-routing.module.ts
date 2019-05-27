@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules, CanLoad } from '@angular/router';
 
 //components
 import { HomeComponent } from './home/home.component';
@@ -11,16 +11,17 @@ import { OrderComponent } from './order/order.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './security/login/login.component';
+import { LoggedInGuard } from './security/loggedin.guard';
 
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'login/:to', component: LoginComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'home', component: HomeComponent },
 
 	{ path: 'about', loadChildren: './about/about.module#AboutModule'},
 
-	{ path: 'restaurants', component: RestaurantsComponent },
 	{ path: 'restaurants/:id', component: RestaurantDetailComponent,
 		children: [
 			{ path: '', redirectTo: 'menu', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
 			{ path: 'reviews', component: ReviewsComponent }
 		] 
 	},
-	{ path: 'order', loadChildren: './order/order.module#OrderModule' },
+	{ path: 'restaurants', component: RestaurantsComponent },
+	{ path: 'order', loadChildren: './order/order.module#OrderModule', canLoad: [LoggedInGuard] },
 	{ path: 'order-sumary', component: OrderSumaryComponent },
 	{ path: '**', component: NotFoundComponent }
 ];
